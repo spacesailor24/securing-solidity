@@ -1,9 +1,21 @@
 # Reentrancy Attack
 
+## Table of Contents
+
+- [Glossary](#glossary)
+- [The Attack](#the-attack)
+    - [Victim contract](#victim)
+    - [Attacking contract](#attack)
+    - [Step by Step](#step-by-step)
+- [Preventative Techniques](#preventative-techniques)
+    - [Using `transfer`](#using-transfer)
+    - [Executing Logic Before Sending Ether](#executing-logic-before-sending-ether)
+
 ## Glossary
 
 - [Fallback Function](https://solidity.readthedocs.io/en/v0.5.3/contracts.html#fallback-function)
 - [Function Selector](https://solidity.readthedocs.io/en/v0.4.21/abi-spec.html#function-selector)
+- [Transfer Function](https://solidity.readthedocs.io/en/latest/units-and-global-variables.html#address-related)
 
 ## The Attack
 
@@ -81,6 +93,8 @@ contract Attack {
 }
 ```
 
+### Step by Step
+
 If you haven't seen the vulnerability yet, follow the steps below to get a step-by-step picture of how the attack would play out:
 
 **NOTE** For this example, let's imagine other Ethereum users has deposited a total of **10 ether** into the `Victim` contract
@@ -99,4 +113,18 @@ If you haven't seen the vulnerability yet, follow the steps below to get a step-
     - It's important to note that the mission critical logic that maintains the appropirate state for each address' balance in the `withdrawFunds` function: `balances[msg.sender] -= _amountToWithdraw;` will have not been executed, because it takes place **AFTER** the `require(msg.sender.call.value(_amountToWithdraw)());` which triggers the _fallback function_ and causes the _reentry_ into the beginning of the `withdrawFunds` function
 10. Steps 6 - 9 will repeat until the if statement: `if (victim.balance > 1 ether)` in the `Attack` contract's _fallback function_ fails and allows...
 11. The `withdrawFunds` function to execute: `balances[msg.sender] -= _amountToWithdraw;` which will deduct the **1 ether** we deposited in step 4 from the `Attack` contract's address
-    - At this point the _reentrancy_ loop is finished and the transaction inititated in step 3 is finished
+    - At this point the _reentrancy_ loop is finished and the transaction inititated in step 3 is completed
+
+At the end of this attack, the attacker now has the original **1 ether** that was deposited when calling `attackVictim`, but now also has the **10 ether** that was stored in the `Victim` contract by other Ethereum users.
+
+## Preventative Techniques
+
+### Using `transfer`
+
+The `transfer` method is a built-in Solidity method on the `address` type, e.g.: `myEthereumAddress.transfer(amountToSend)`
+
+When using the `transfer` method, the transaction is restricted to only forwaring **2300 gas** to the reciepient address
+
+So, if the `Victim` contract would have used `msg.sender.transfer(_amountToWithdraw)` instead of `msg.sender.call.value(_amountToWithdraw)()` in the `withdrawFunds` function, it wouldn't have mattered if the attacker passed an exorbitant amount of _gas_ when calling the `attackVictim` function, the `transfer` method would have only forwarded **2300 gas** to the _fallback function_ in the `Attack` contract which would have not been enough to make the _reentracy_ call back into the `Victim` contract; The transaction would have reverted when it ran out of _gas_ leaving the **10 ether** deposited by other Ethereum users within the `Victim` contract.
+
+### Executing Logic Before Sending Ether
