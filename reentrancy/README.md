@@ -233,7 +233,7 @@ If you haven't seen how the vulnerability has been fixed, follow the steps below
 6. The first `require(balances[msg.sender] >= _amountToWithdraw);` check in the `withdrawFunds` function will execute and pass, as the `Attack` contract's address will have a balance of **1 ether**
 7. Next `withdrawFunds` will execute: `balances[msg.sender] -= _amountToWithdraw;` reducing the `Attack` contract's balance inside of the `Victim` contract to **0 ether**
 8. Then `withdrawFunds` executes: `require(msg.sender.call.value(_amountToWithdraw)());`, triggering the _fallback function_ in the `Attack` contract
-    - Now the if statement: `if (victim.balance > 1 ether)` in the `Attack` contract's _fallback function_ will fail, because the balance for the `Attack` contract's address is **0 ether** inside the `Victim` contract since it was deducted the **1 ether** (deposited in step #3) when step #7 executed
+9. Now the if statement: `if (victim.balance > 1 ether)` in the `Attack` contract's _fallback function_ will fail, because the balance for the `Attack` contract's address is **0 ether** inside the `Victim` contract since it was deducted the **1 ether** (deposited in step #3) when step #7 executed
 
 The transaction started in step #3 will now been completed and the attacker only withdrew the **1 ether** they deposited themselves, keeping all the other Ethereum user's ether safe inside the `Victim` contract
 
