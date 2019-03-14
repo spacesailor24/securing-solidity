@@ -14,6 +14,7 @@
         - [Revised Victim Contract](#revised-victim-contract)
         - [Same Attacking Contract](#same-attack-contract)
         - [Revised Step by Step](#revised-step-by-step)
+            - [Visual Representation - Revised](#visual-representation-revised)
         - [But Wait There's More](#but-wait-theres-more)
 - [Real World Example](#real-world-example)
     - [The DAO](#the-dao)
@@ -236,6 +237,12 @@ If you haven't seen how the vulnerability has been fixed, follow the steps below
 9. Now the if statement: `if (victim.balance > 1 ether)` in the `Attack` contract's _fallback function_ will fail, because the balance for the `Attack` contract's address is **0 ether** inside the `Victim` contract since it was deducted the **1 ether** (deposited in step #3) when step #7 executed
 
 The transaction started in step #3 will now been completed and the attacker only withdrew the **1 ether** they deposited themselves, keeping all the other Ethereum user's ether safe inside the `Victim` contract
+
+#### Visual Representation - Revised
+
+The diagram starts at Step #2
+
+![Rentrancy Attack Revised Diagram](./assets/reentrancy-attack-revised.jpg)
 
 #### But Wait There's More
 
