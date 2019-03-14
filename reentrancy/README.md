@@ -247,7 +247,7 @@ Well, follow the next step-by-step execution below to see how this still wouldn'
 2. The attacker gets the address of the deployed `Victim` contract, and deploys the `Attack` contract passing the `Victim` contract's address to `Attack`'s `constructor`
 3. The attacker then calls the `attackVictim` function with **2 ether** and provide **a lot** of `gas` for the transaction
     - The amount of `gas` that is sent with the transaction, is important because if not enough `gas` is sent, the transaction could _revert_ before all the funds were withdrawn causing the attacker's would-be ether to remain in the `Victim` contract
-4. The `attackVictim` function will then call the `depositFunds` function on the `Victim` contract, which will increase the balace for the `Attack` contract's address to **1 ether**
+4. The `attackVictim` function will then call the `depositFunds` function on the `Victim` contract, which will increase the balace for the `Attack` contract's address to **2 ether**
 5. Then `attackVictim` calls the `withdrawFunds` function on the `Victim` contract, passing it **1 ether**
 6. The first `require(balances[msg.sender] >= _amountToWithdraw);` check in the `withdrawFunds` function will execute and pass, as the `Attack` contract's address will have a balance of **1 ether**
 7. Next `withdrawFunds` will execute: `balances[msg.sender] -= _amountToWithdraw;` reducing the `Attack` contract's balance inside of the `Victim` contract to **0 ether**
