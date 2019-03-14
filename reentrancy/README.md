@@ -15,6 +15,8 @@
         - [Same Attacking Contract](#same-attack-contract)
         - [Revised Step by Step](#revised-step-by-step)
         - [But Wait There's More](#but-wait-theres-more)
+- [Real World Example](#real-world-example)
+    - [The DAO](#the-dao)
 
 ## Glossary
 
@@ -260,3 +262,13 @@ Well, follow the next step-by-step execution below to see how this still wouldn'
 
 
 Now, once again, the transaction started in step #3 is now completed, the attacker only withdrew the **2 ether** they originally deposited, and every other Ethereum user's ether is safe inside of the `Victim` contract
+
+## Real World Example
+
+### The DAO
+
+> The DAO (Decentralized Autonomous Organization) attack was one of the major hacks that occurred in the early development of Ethereum. At the time, the contract held over $150 million. Reentrancy played a major role in the attack, which ultimately led to the hard fork that created Ethereum Classic (ETC). For a good analysis of the DAO exploit, see http://bit.ly/2EQaLCI.
+
+- Mastering Ethereum, p. 177
+
+In case the `bit.ly` link doesn't resolve one day, click [Here](http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/)
