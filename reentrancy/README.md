@@ -4,15 +4,15 @@
 
 - [Glossary](#glossary)
 - [The Attack](#the-attack)
-    - [Victim contract](#victim)
-    - [Attacking contract](#attack)
+    - [Victim contract](#victim-contract)
+    - [Attacking contract](#attack-contract)
     - [Step by Step](#step-by-step)
         - [Visual Representation](#visual-representation)
 - [Preventative Techniques](#preventative-techniques)
     - [Using `transfer`](#using-transfer)
     - [Executing Logic Before Sending Ether](#executing-logic-before-sending-ether)
-        - [Revised Victim Contract](#revised-victim)
-        - [Same Attacking Contract](#same-attack)
+        - [Revised Victim Contract](#revised-victim-contract)
+        - [Same Attacking Contract](#same-attack-contract)
         - [Revised Step by Step](#revised-step-by-step)
         - [But Wait There's More](#but-wait-theres-more)
 
@@ -32,7 +32,7 @@ This presents a problem when the victim smart contract's external call is execut
 
 For example, the following code represents two smart contracts, one named `Victim` and the other, `Attack`:
 
-### Victim
+### Victim Contract
 
 ```solidity
 contract Victim {
@@ -60,7 +60,7 @@ contract Victim {
 }
 ```
 
-### Attack
+### Attack Contract
 
 ```solidity
 import "Victim.sol";
@@ -148,7 +148,7 @@ This particular _reentrancy_ attack could be disabled if execution of `require(m
 
 Why you ask? Well take a look at the revised `Victim` contract below and see if you can see how the _reentrancy_ attack would have been thwarted by switching two lines of code:
 
-#### Revised Victim
+#### Revised Victim Contract
 
 This is the **revised** version of the first `Victim` contract
 
@@ -178,7 +178,7 @@ contract Victim {
 }
 ```
 
-#### Same Attack
+#### Same Attack Contract
 
 ```solidity
 import "Victim.sol";
