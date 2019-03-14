@@ -20,6 +20,7 @@
 - [Real World Example](#real-world-example)
     - [The DAO](#the-dao)
 - [An Implementation](#an-implementation)
+- [Contributing](#contributing)
 
 ## Glossary
 
@@ -292,3 +293,11 @@ In case the `bit.ly` link doesn't resolve one day, click [Here](http://hackingdi
 ## An Implementation
 
 TBD
+
+## Contributing
+
+If you find that you have any information that could be added to improve this explanation of Reentrancy Attacks, please feel free to submit a pull request!
+
+If you find any errors within this explanation, I'd greatly appreciate an issue or a pull request, if you feel inclined to fix the error!
+
+Thank you for taking the time to read this, I look forward to all of us becoming better Solidity developers!
