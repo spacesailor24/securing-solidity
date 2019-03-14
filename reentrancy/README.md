@@ -237,7 +237,7 @@ The transaction started in step #3 will now been completed and the attacker only
 
 #### But Wait There's More
 
-What if the attack sent **2 ether** when they called the `attackVictim` function, then in step #8 the if statement: `if (victim.balance > 1 ether)` still would have passed and `victim.withdrawFunds(1 ether);` would have been executed and the transaction would have stilled _reentered_ into the `Victim` contract...
+What if the attacker sent **2 ether** when they called the `attackVictim` function, then in step #8 the if statement: `if (victim.balance > 1 ether)` still would have passed and `victim.withdrawFunds(1 ether);` would have been executed and the transaction would have stilled _reentered_ into the `Victim` contract...
 
 Well, follow the next step-by-step execution below to see how this still wouldn't have resulted in the attacker withdrawing more ether then they deposited:
 
