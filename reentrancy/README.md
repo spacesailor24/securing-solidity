@@ -19,6 +19,7 @@
             - [Visual Representation - Revised with 2 ETH](#visual-representation-revised-with-2-eth)
 - [Real World Example](#real-world-example)
     - [The DAO](#the-dao)
+- [An Implementation](#an-implementation)
 
 ## Glossary
 
@@ -287,3 +288,7 @@ The diagram starts at Step #2
 \- [Mastering Ethereum, p. 177](https://github.com/ethereumbook/ethereumbook/blob/develop/09smart-contracts-security.asciidoc#real-world-example-the-dao)
 
 In case the `bit.ly` link doesn't resolve one day, click [Here](http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/)
+
+## An Implementation
+
+TBD
