@@ -261,11 +261,11 @@ Well, follow the next step-by-step execution below to see how this still wouldn'
 6. The first `require(balances[msg.sender] >= _amountToWithdraw);` check in the `withdrawFunds` function will execute and pass, as the `Attack` contract's address will have a balance of **2 ether**
 7. Next `withdrawFunds` will execute: `balances[msg.sender] -= _amountToWithdraw;` reducing the `Attack` contract's balance inside of the `Victim` contract to **1 ether**
 8. Then `withdrawFunds` executes: `require(msg.sender.call.value(_amountToWithdraw)());`, triggering the _fallback function_ in the `Attack` contract
-    - Now the if statement: `if (victim.balance > 1 ether)` in the `Attack` contract's _fallback function_ will pass, because the balance for the `Attack` contract's address is **1 ether** inside the `Victim` contract since it was deducted 1 out of the **2 ether** (deposited in step #3) when step #7 executed
-9. The next part of the `Attack` contract's _fallback function_ executes: `victim.withdrawFunds(1 ether);` casuing the transaction to _reenter_ the `Victim` contract's `withdrawFunds` function
-10. The require statement: `require(balances[msg.sender] >= _amountToWithdraw);` in the `withdrawFunds` function passes, because the `Attack` contract's balance is now **1 ether**
-11. Next `balances[msg.sender] -= _amountToWithdraw;` executes deducting the `Attack` contract's balance to **0 ether**
-12. Then `require(msg.sender.call.value(_amountToWithdraw)());` executes triggering the _fallback function_ within the `Attack` contract to execute again, but this time the if statement: `if (victim.balance > 1 ether)` will fail because the `Attack` contract's balance is **0 ether** since the **1 ether** in step #8 that caused the _reentrancy_ into the `Victim` contract was just deducted
+9. Now the if statement: `if (victim.balance > 1 ether)` in the `Attack` contract's _fallback function_ will pass, because the balance for the `Attack` contract's address is **1 ether** inside the `Victim` contract since it was deducted 1 out of the **2 ether** (deposited in step #3) when step #7 executed
+10. The next part of the `Attack` contract's _fallback function_ executes: `victim.withdrawFunds(1 ether);` casuing the transaction to _reenter_ the `Victim` contract's `withdrawFunds` function
+11. The require statement: `require(balances[msg.sender] >= _amountToWithdraw);` in the `withdrawFunds` function passes, because the `Attack` contract's balance is now **1 ether**
+12. Next `balances[msg.sender] -= _amountToWithdraw;` executes deducting the `Attack` contract's balance to **0 ether**
+13. Then `require(msg.sender.call.value(_amountToWithdraw)());` executes triggering the _fallback function_ within the `Attack` contract to execute again, but this time the if statement: `if (victim.balance > 1 ether)` will fail because the `Attack` contract's balance is **0 ether** since the **1 ether** in step #8 that caused the _reentrancy_ into the `Victim` contract was just deducted
 
 
 Now, once again, the transaction started in step #3 is now completed, the attacker only withdrew the **2 ether** they originally deposited, and every other Ethereum user's ether is safe inside of the `Victim` contract
