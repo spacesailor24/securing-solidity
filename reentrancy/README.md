@@ -16,6 +16,7 @@
         - [Revised Step by Step](#revised-step-by-step)
             - [Visual Representation - Revised](#visual-representation-revised)
         - [But Wait There's More](#but-wait-theres-more)
+            - [Visual Representation - Revised with 2 ETH](#visual-representation-revised-with-2-eth)
 - [Real World Example](#real-world-example)
     - [The DAO](#the-dao)
 
@@ -270,6 +271,12 @@ Well, follow the next step-by-step execution below to see how this still wouldn'
 
 
 Now, once again, the transaction started in step #3 is now completed, the attacker only withdrew the **2 ether** they originally deposited, and every other Ethereum user's ether is safe inside of the `Victim` contract
+
+#### Visual Representation - Revised with 2 ETH
+
+The diagram starts at Step #2
+
+![Rentrancy Attack Revised with 2 ETH Diagram](./assets/reentrancy-attack-revised-2.jpg)
 
 ## Real World Example
 
