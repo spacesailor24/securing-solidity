@@ -269,6 +269,6 @@ Now, once again, the transaction started in step #3 is now completed, the attack
 
 > The DAO (Decentralized Autonomous Organization) attack was one of the major hacks that occurred in the early development of Ethereum. At the time, the contract held over $150 million. Reentrancy played a major role in the attack, which ultimately led to the hard fork that created Ethereum Classic (ETC). For a good analysis of the DAO exploit, see http://bit.ly/2EQaLCI.
 
-\- Mastering Ethereum, p. 177
+\- [Mastering Ethereum, p. 177](https://github.com/ethereumbook/ethereumbook/blob/develop/09smart-contracts-security.asciidoc#real-world-example-the-dao)
 
 In case the `bit.ly` link doesn't resolve one day, click [Here](http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/)
