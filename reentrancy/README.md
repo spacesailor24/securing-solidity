@@ -106,7 +106,7 @@ If you haven't seen the vulnerability yet, follow the steps below to get a step-
 
 1. The `Victim` contract is deployed
 2. The attacker gets the address of the deployed `Victim` contract, and deploys the `Attack` contract passing the `Victim` contract's address to `Attack`'s `constructor`
-3. The attacker would call the `attackVictim` function with **1 ether** and provide **a lot** of `gas` for the transaction
+3. The attacker then calls the `attackVictim` function with **1 ether** and provide **a lot** of `gas` for the transaction
     - The amount of `gas` that is sent with the transaction, is important because if not enough `gas` is sent, the transaction could _revert_ before all the funds were withdrawn causing the attacker's would-be ether to remain in the `Victim` contract
 4. The `attackVictim` function will then call the `depositFunds` function on the `Victim` contract, which will increase the balace for the `Attack` contract's address to **1 ether**
 5. Then `attackVictim` calls the `withdrawFunds` function on the `Victim` contract, passing it **1 ether**
@@ -224,7 +224,7 @@ If you haven't seen how the vulnerability has been fixed, follow the steps below
 
 1. The `Victim` contract is deployed
 2. The attacker gets the address of the deployed `Victim` contract, and deploys the `Attack` contract passing the `Victim` contract's address to `Attack`'s `constructor`
-3. The attacker would call the `attackVictim` function with **1 ether** and provide **a lot** of `gas` for the transaction
+3. The attacker then calls the `attackVictim` function with **1 ether** and provide **a lot** of `gas` for the transaction
     - The amount of `gas` that is sent with the transaction, is important because if not enough `gas` is sent, the transaction could _revert_ before all the funds were withdrawn causing the attacker's would-be ether to remain in the `Victim` contract
 4. The `attackVictim` function will then call the `depositFunds` function on the `Victim` contract, which will increase the balace for the `Attack` contract's address to **1 ether**
 5. Then `attackVictim` calls the `withdrawFunds` function on the `Victim` contract, passing it **1 ether**
@@ -245,7 +245,7 @@ Well, follow the next step-by-step execution below to see how this still wouldn'
 
 1. The `Victim` contract is deployed
 2. The attacker gets the address of the deployed `Victim` contract, and deploys the `Attack` contract passing the `Victim` contract's address to `Attack`'s `constructor`
-3. The attacker would call the `attackVictim` function with **2 ether** and provide **a lot** of `gas` for the transaction
+3. The attacker then calls the `attackVictim` function with **2 ether** and provide **a lot** of `gas` for the transaction
     - The amount of `gas` that is sent with the transaction, is important because if not enough `gas` is sent, the transaction could _revert_ before all the funds were withdrawn causing the attacker's would-be ether to remain in the `Victim` contract
 4. The `attackVictim` function will then call the `depositFunds` function on the `Victim` contract, which will increase the balace for the `Attack` contract's address to **1 ether**
 5. Then `attackVictim` calls the `withdrawFunds` function on the `Victim` contract, passing it **1 ether**
